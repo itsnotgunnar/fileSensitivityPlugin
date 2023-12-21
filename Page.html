@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <h2>Document Classification</h2>
+    <div>
+      <p>Select the sensitivity level:</p>
+      <select id="sensitivity-level">
+        <option value="public">Public</option>
+        <option value="internal">Internal Use Only</option>
+        <option value="confidential">Confidential</option>
+        <option value="highly-confidential">Highly Confidential</option>
+      </select>
+    </div>
+    <div>
+      <p>Select Compliance Tags:</p>
+      <input type="checkbox" id="gdpr" value="GDPR">
+      <label for="gdpr">GDPR</label><br>
+      <input type="checkbox" id="hipaa" value="HIPAA">
+      <label for="hipaa">HIPAA</label><br>
+      <input type="checkbox" id="pci-dss" value="PCI DSS">
+      <label for="pci-dss">PCI DSS</label><br>
+      <input type="checkbox" id="iso-27001" value="ISO 27001">
+      <label for="iso-27001">ISO 27001</label>
+    </div>
+    <div>
+      <p>Contains Customer Data:</p>
+      <input type="checkbox" id="pii" value="Personal Identifiable Information">
+      <label for="pii">Personal Identifiable Information (PII)</label><br>
+      <input type="checkbox" id="financial-data" value="Financial Data">
+      <label for="financial-data">Financial Data</label><br>
+      <input type="checkbox" id="health-records" value="Health Records">
+      <label for="health-records">Health Records</label>
+    </div>
+    <button onclick="classifyDocument()">Classify</button>
+  </body>
+  <script>
+    function classifyDocument() {
+      var sensitivityLevel = document.getElementById('sensitivity-level').value;
+      var complianceTags = [];
+      var customerDataTags = [];
+      ["gdpr", "hipaa", "pci-dss", "iso-27001"].forEach(function(tag) {
+        if (document.getElementById(tag).checked) {
+          complianceTags.push(document.getElementById(tag).value);
+        }
+      });
+      ["pii", "financial-data", "health-records"].forEach(function(tag) {
+        if (document.getElementById(tag).checked) {
+          customerDataTags.push(document.getElementById(tag).value);
+        }
+      });
+      google.script.run.classifyCurrentDocument(sensitivityLevel, complianceTags, customerDataTags);
+      google.script.host.close();
+    }
+  </script>
+</html>
