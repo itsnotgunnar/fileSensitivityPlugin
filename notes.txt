@@ -1,0 +1,5 @@
+- when searching through .docx files, there are false positives for xml filepaths that are just properties of the file
+- netwrix is a great source 
+- bhdicaire has a great repo with example sensitive data
+- integrate more regexes that include private keys, etc that are shown in file_scanner/infoLeak.json
+
