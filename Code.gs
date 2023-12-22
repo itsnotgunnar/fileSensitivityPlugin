@@ -3,9 +3,6 @@
 **/
 
 /**
- * Deployment id: AKfycbxSGFo4rRKYqdMYPV9dVE9UOznjQWOuTBFkD2Uq2DquMhjf1p3VicHjXmfN5UYPU9z4
- */
-/**
  * Creates a menu entry in the Google Docs UI when the document is opened.
  * This method is only used by the regular add-on, and is never called by
  * the mobile add-on version.
